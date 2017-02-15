@@ -9,22 +9,10 @@ import (
 
 func main() {  
     var jsonStr = []byte(`{
-    "endpoint_counters": [
-        {
-            "endpoint": "host1",
-            "counter": "load.1min"
-        },
-        {
-            "endpoint": "host2",
-            "counter": "cpu.idle"
-        }
-    ],
-    "start": 1437375109,
-    "end": 1437377109,
-    "cf": "AVERAGE"
+    "ip": "8.8.8.8"
     }`)
-
-    url := "http://example.com/graph/history"
+    //url := "http://example.com/graph/history"
+    url := "http://ip.jsontest.com/"
     fmt.Println("URL:>", url)
 
     req, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonStr))
