@@ -32,6 +32,7 @@ func (t *HelloWorldChaincode) Query(stub shim.ChaincodeStubInterface, function s
 }
 
 func main() {
+    callrest()
     err := shim.Start(new(HelloWorldChaincode))
     if err != nil {
         fmt.Printf("Error starting Hello World chaincode: %s", err)
