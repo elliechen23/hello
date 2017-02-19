@@ -14,7 +14,7 @@ peer chaincode query  -n $ccid -c '{"Function":"query", "Args":[]}'
 
 **## HelloWorld2.go**
 
-# peer chaincode deploy -p github.com/hyperledger/fabric/examples/chaincode/go/hello -c '{"Args": ["init"]}'
+peer chaincode deploy -p github.com/hyperledger/fabric/examples/chaincode/go/hello -c '{"Args": ["init"]}'
 15:37:03.284 [chaincodeCmd] chaincodeDeploy -> INFO 001 Deploy result: type:GOLANG chaincodeID:<path:"github.com/hyperledger/fabric/examples/chaincode/go/hello" name:"86070b84e2066d15be6f516c757e1dee33aa49a91090a62d68713a0a3a625966579c68ee0f4cfc7cb029aa001582d330362a5cf8fa02898a4f58b1f0b149e4c6" > ctorMsg:<args:"init" > 
 Deploy chaincode: 86070b84e2066d15be6f516c757e1dee33aa49a91090a62d68713a0a3a625966579c68ee0f4cfc7cb029aa001582d330362a5cf8fa02898a4f58b1f0b149e4c6
 15:37:03.284 [main] main -> INFO 002 Exiting.....
