@@ -43,10 +43,6 @@ func (t *StorageChaincode) Invoke(stub shim.ChaincodeStubInterface, function str
 	fmt.Println("StorageChaincode Invoke")
 	
 
-	if len(args) < 2 {
-		return nil, errors.New("Incorrect number of arguments. Expecting at least 2")
-	}
-
 	if function == "delete" {
 		// Deletes an entity from its state
 		return t.delete(stub, args)
