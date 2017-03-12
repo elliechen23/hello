@@ -11,6 +11,7 @@ export ccid=04d8dc99a3af4cf3f71020ec03ca16eeda7c3cdf6f4f81e5ac82036c8aa4e76ae5d6
 peer chaincode invoke  -n $ccid -c '{"Function":"invoke", "Args":[]}'
 
 peer chaincode query  -n $ccid -c '{"Function":"query", "Args":[]}'
+#
 
 **## HelloWorld2.go**
 
@@ -27,6 +28,7 @@ peer chaincode query  -n $ccid2 -c '{"Function":"query", "Args":[]}'
 
 curl --request GET "http://localhost:7050/chain/blocks/5"
 {"transactions":[{"type":2,"chaincodeID":"EoABODYwNzBiODRlMjA2NmQxNWJlNmY1MTZjNzU3ZTFkZWUzM2FhNDlhOTEwOTBhNjJkNjg3MTNhMGEzYTYyNTk2NjU3OWM2OGVlMGY0Y2ZjN2NiMDI5YWEwMDE1ODJkMzMwMzYyYTVjZjhmYTAyODk4YTRmNThiMWYwYjE0OWU0YzY=","payload":"CpIBCAESgwESgAE4NjA3MGI4NGUyMDY2ZDE1YmU2ZjUxNmM3NTdlMWRlZTMzYWE0OWE5MTA5MGE2MmQ2ODcxM2EwYTNhNjI1OTY2NTc5YzY4ZWUwZjRjZmM3Y2IwMjlhYTAwMTU4MmQzMzAzNjJhNWNmOGZhMDI4OThhNGY1OGIxZjBiMTQ5ZTRjNhoICgZpbnZva2U=","txid":"e4a2bf75-1c21-4e8f-871b-219df96bfb3d","timestamp":{"seconds":1487518708,"nanos":52960927}}],"stateHash":"QkIbllrDhpZ1+ZGCTwbu83CEnR9oA8/fECHDCvYNz6wjdpxvCS/aTsG24NbDAhMtHQmhq12yhoCYmSLgGvLm+A==","previousBlockHash":"hebIh4wU80S4o8WsESJm/0tfZFKSCuj6yNUqlPjYtQnzVpA7cI0YzZKvEECDXN/NwY5KK08j731yxfJi6jtQfg==","consensusMetadata":"CAU=","nonHashData":{"localLedgerCommitTimestamp":{"seconds":1487518709,"nanos":298421617},"chaincodeEvents":[{}]}}
+#
 
 **## chaincode_storage.go**
 
@@ -58,6 +60,9 @@ peer chaincode invoke  -u jim -n $ccid2 -c '{"Function":"delete", "Args":["testD
 peer chaincode query  -u jim -n $ccid2 -c '{"Function":"query", "Args":["testDate"]}'
 
 #
+StorageChaincode Invoke
+StorageChaincode put
+Successfully updated state
 Query Response:{"Key":"testDate","Value":"2017-03-12"}
 StorageChaincode Invoke
 StorageChaincode delete
