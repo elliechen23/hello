@@ -30,6 +30,23 @@ curl --request GET "http://localhost:7050/chain/blocks/5"
 {"transactions":[{"type":2,"chaincodeID":"EoABODYwNzBiODRlMjA2NmQxNWJlNmY1MTZjNzU3ZTFkZWUzM2FhNDlhOTEwOTBhNjJkNjg3MTNhMGEzYTYyNTk2NjU3OWM2OGVlMGY0Y2ZjN2NiMDI5YWEwMDE1ODJkMzMwMzYyYTVjZjhmYTAyODk4YTRmNThiMWYwYjE0OWU0YzY=","payload":"CpIBCAESgwESgAE4NjA3MGI4NGUyMDY2ZDE1YmU2ZjUxNmM3NTdlMWRlZTMzYWE0OWE5MTA5MGE2MmQ2ODcxM2EwYTNhNjI1OTY2NTc5YzY4ZWUwZjRjZmM3Y2IwMjlhYTAwMTU4MmQzMzAzNjJhNWNmOGZhMDI4OThhNGY1OGIxZjBiMTQ5ZTRjNhoICgZpbnZva2U=","txid":"e4a2bf75-1c21-4e8f-871b-219df96bfb3d","timestamp":{"seconds":1487518708,"nanos":52960927}}],"stateHash":"QkIbllrDhpZ1+ZGCTwbu83CEnR9oA8/fECHDCvYNz6wjdpxvCS/aTsG24NbDAhMtHQmhq12yhoCYmSLgGvLm+A==","previousBlockHash":"hebIh4wU80S4o8WsESJm/0tfZFKSCuj6yNUqlPjYtQnzVpA7cI0YzZKvEECDXN/NwY5KK08j731yxfJi6jtQfg==","consensusMetadata":"CAU=","nonHashData":{"localLedgerCommitTimestamp":{"seconds":1487518709,"nanos":298421617},"chaincodeEvents":[{}]}}
 #
 
+**## SaveStateChaincode.go**
+
+peer chaincode deploy -u jim -l golang -c '{"Args": ["init"]}' -p github.com/hyperledger/fabric/examples/chaincode/go/hello/SaveStateChaincode
+06:57:44.612 [chaincodeCmd] getChaincodeSpecification -> INFO 001 Local user 'jim' is already logged in. Retrieving login token.
+06:57:46.843 [chaincodeCmd] chaincodeDeploy -> INFO 002 Deploy result: type:GOLANG chaincodeID:<path:"github.com/hyperledger/fabric/examples/chaincode/go/hello/SaveStateChaincode" name:"79fe601fafc651c73740f3d5eac3f3fae032addb68e98811ba995af3d1220fa78b06dd48b06a7f25d450a14339e5927fbe2e283c2e2ce4ca7e5e5caf1e530d46" > ctorMsg:<args:"init" > 
+Deploy chaincode: 79fe601fafc651c73740f3d5eac3f3fae032addb68e98811ba995af3d1220fa78b06dd48b06a7f25d450a14339e5927fbe2e283c2e2ce4ca7e5e5caf1e530d46
+06:57:46.851 [main] main -> INFO 003 Exiting.....
+
+export ccid=79fe601fafc651c73740f3d5eac3f3fae032addb68e98811ba995af3d1220fa78b06dd48b06a7f25d450a14339e5927fbe2e283c2e2ce4ca7e5e5caf1e530d46
+
+peer chaincode invoke  -u jim -n $ccid -c '{"Function":"invoke", "Args":["testKey","testValue"]}'
+
+peer chaincode query  -u jim -n $ccid -c '{"Function":"query", "Args":["testKey"]}'
+Query Result: State for testKey = testValue
+
+#
+
 **## chaincode_storage.go**
 
 cd /opt/gopath/src/github.com/hyperledger/fabric/examples/chaincode/go/
@@ -54,10 +71,12 @@ export ccid2=71f6291a2b98c0a42ed0b5e7c2f1402704dc1c8c07890778b9364bd840113200e26
 peer chaincode invoke  -u jim -n $ccid2 -c '{"Function":"put", "Args":["testDate","2017-03-12"]}'
 
 peer chaincode query  -u jim -n $ccid2 -c '{"Function":"query", "Args":["testDate"]}'
+Query Result: 2017-03-12
 
 peer chaincode invoke  -u jim -n $ccid2 -c '{"Function":"delete", "Args":["testDate"]}'
 
 peer chaincode query  -u jim -n $ccid2 -c '{"Function":"query", "Args":["testDate"]}'
+Query Result: 
 
 #
 StorageChaincode Invoke
