@@ -129,14 +129,11 @@ func (t *StorageChaincode) Query(stub shim.ChaincodeStubInterface, function stri
 		return nil, errors.New(jsonResp)
 	}
 
-	if Avalbytes == nil {
-		jsonResp := "{\"Error\":\"Nil amount for " + A + "\"}"
-		return nil, errors.New(jsonResp)
-	}
 
 	jsonResp := "{\"Key\":\"" + A + "\",\"Value\":\"" + string(Avalbytes) + "\"}"
 	fmt.Printf("Query Response:%s\n", jsonResp)
-	return Avalbytes, nil
+	
+	return []byte(Avalbytes), nil
 }
 
 func main() {
