@@ -43,10 +43,6 @@ func (t *StorageChaincode) Invoke(stub shim.ChaincodeStubInterface, function str
 	fmt.Println("StorageChaincode Invoke")
 	
 
-	if function != "invoke" {
-		return nil, errors.New("Unknown function call")
-	}
-
 	if len(args) < 2 {
 		return nil, errors.New("Incorrect number of arguments. Expecting at least 2")
 	}
@@ -93,7 +89,7 @@ func (t *StorageChaincode) put(stub shim.ChaincodeStubInterface, args []string) 
 // Deletes an entity from state
 func (t *StorageChaincode) delete(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
 	if len(args) != 2 {
-		return nil, errors.New("Incorrect number of arguments. Expecting 3")
+		return nil, errors.New("Incorrect number of arguments. Expecting 2")
 	}
 
 	A := args[0]
@@ -111,17 +107,13 @@ func (t *StorageChaincode) delete(stub shim.ChaincodeStubInterface, args []strin
 func (t *StorageChaincode) Query(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 	fmt.Println("StorageChaincode query")
 	
-	if function != "query" {
-		return nil, errors.New("Invalid query function name. Expecting \"query\"")
-	}
-
 	var A string // Entities
 	var err error
     A = args[0]
 	
 	// Get the state from the ledger
 	Avalbytes, err := stub.GetState(A)
-	
+
 	if err != nil {
 		jsonResp := "{\"Error\":\"Failed to get state for " + A + "\"}"
 		return nil, errors.New(jsonResp)
