@@ -81,6 +81,14 @@ peer chaincode query  -u jim -n $ccid2 -c '{"Function":"query", "Args":["testDat
 Query Result: 
 
 #
+
+Init called with function init!
+
+Invoke called with function invoke!
+
+Query called with function query!
+
+#
 StorageChaincode Invoke
 
 StorageChaincode put
