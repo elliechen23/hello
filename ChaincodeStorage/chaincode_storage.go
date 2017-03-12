@@ -61,7 +61,7 @@ func (t *StorageChaincode) Invoke(stub shim.ChaincodeStubInterface, function str
 		return t.put(stub, args)
 	}
 
-	return nil, errors.New("Invalid invoke function name. Expecting \"put\" \"delete\" \"query\"")
+	return nil, errors.New("Invalid invoke function name. Expecting \"put\" \"delete\"")
 }
 
 // Transaction makes payment of X units from A to B
@@ -72,13 +72,13 @@ func (t *StorageChaincode) put(stub shim.ChaincodeStubInterface, args []string) 
 	var Aval string // Asset holdings
 	var err error
 
-	if len(args) != 3 {
-		return nil, errors.New("Incorrect number of arguments. Expecting 3")
+	if len(args) != 2 {
+		return nil, errors.New("Incorrect number of arguments. Expecting 2")
 	}
 	
 
-	A = args[1]
-	Aval = args[2]
+	A = args[0]
+	Aval = args[1]
 
 	// Write the state back to the ledger
 	err = stub.PutState(A, []byte(Aval))
@@ -86,7 +86,7 @@ func (t *StorageChaincode) put(stub shim.ChaincodeStubInterface, args []string) 
 		return nil, err
 	}
 	
-	return nil, nil
+	return []byte(Aval), nil
 
 }
 
@@ -96,7 +96,7 @@ func (t *StorageChaincode) delete(stub shim.ChaincodeStubInterface, args []strin
 		return nil, errors.New("Incorrect number of arguments. Expecting 3")
 	}
 
-	A := args[1]
+	A := args[0]
 	
 	// Delete the key from the state in ledger
 	err := stub.DelState(A)
@@ -120,7 +120,7 @@ func (t *StorageChaincode) Query(stub shim.ChaincodeStubInterface, function stri
 		return nil, errors.New("Incorrect number of arguments. Expecting name of the person to query")
 	}
 
-	A = args[1]
+	A = args[0]
 
 	// Get the state from the ledger
 	Avalbytes, err := stub.GetState(A)
