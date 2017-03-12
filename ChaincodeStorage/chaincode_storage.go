@@ -56,7 +56,7 @@ func (t *StorageChaincode) Invoke(stub shim.ChaincodeStubInterface, function str
 		return t.delete(stub, args)
 	}
 
-	if args[0] == "put" {
+	if function == "put" {
 		// Deletes an entity from its state
 		return t.put(stub, args)
 	}
@@ -66,6 +66,7 @@ func (t *StorageChaincode) Invoke(stub shim.ChaincodeStubInterface, function str
 
 // Transaction makes payment of X units from A to B
 func (t *StorageChaincode) put(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
+    fmt.Println("StorageChaincode put")
 
 	var A string    // Entities
 	var Aval string // Asset holdings
@@ -85,7 +86,7 @@ func (t *StorageChaincode) put(stub shim.ChaincodeStubInterface, args []string) 
 		return nil, err
 	}
 	
-	return []byte(Aval), nil
+	return nil, nil
 
 }
 
