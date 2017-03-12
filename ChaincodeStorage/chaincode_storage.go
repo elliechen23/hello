@@ -53,7 +53,7 @@ func (t *StorageChaincode) Invoke(stub shim.ChaincodeStubInterface, function str
 	}
 
 	if function == "put" {
-		// Deletes an entity from its state
+		// put an entity from its state
 		return t.put(stub, args)
 	}
 
@@ -88,8 +88,10 @@ func (t *StorageChaincode) put(stub shim.ChaincodeStubInterface, args []string) 
 
 // Deletes an entity from state
 func (t *StorageChaincode) delete(stub shim.ChaincodeStubInterface, args []string) ([]byte, error) {
-	if len(args) != 2 {
-		return nil, errors.New("Incorrect number of arguments. Expecting 2")
+    fmt.Println("StorageChaincode delete")
+    
+    if len(args) != 1 {
+		return nil, errors.New("Incorrect number of arguments. Expecting 1")
 	}
 
 	A := args[0]
@@ -107,6 +109,10 @@ func (t *StorageChaincode) delete(stub shim.ChaincodeStubInterface, args []strin
 func (t *StorageChaincode) Query(stub shim.ChaincodeStubInterface, function string, args []string) ([]byte, error) {
 	fmt.Println("StorageChaincode query")
 	
+    if len(args) != 1 {
+		return nil, errors.New("Incorrect number of arguments. Expecting 1")
+	}
+
 	var A string // Entities
 	var err error
     A = args[0]
