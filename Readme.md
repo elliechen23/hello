@@ -16,6 +16,7 @@ peer chaincode query  -n $ccid -c '{"Function":"query", "Args":[]}'
 **## HelloWorld2.go**
 
 peer chaincode deploy -p github.com/hyperledger/fabric/examples/chaincode/go/hello/HelloWorld2 -c '{"Args": ["init"]}'
+
 15:37:03.284 [chaincodeCmd] chaincodeDeploy -> INFO 001 Deploy result: type:GOLANG chaincodeID:<path:"github.com/hyperledger/fabric/examples/chaincode/go/hello" name:"86070b84e2066d15be6f516c757e1dee33aa49a91090a62d68713a0a3a625966579c68ee0f4cfc7cb029aa001582d330362a5cf8fa02898a4f58b1f0b149e4c6" > ctorMsg:<args:"init" > 
 Deploy chaincode: 86070b84e2066d15be6f516c757e1dee33aa49a91090a62d68713a0a3a625966579c68ee0f4cfc7cb029aa001582d330362a5cf8fa02898a4f58b1f0b149e4c6
 15:37:03.284 [main] main -> INFO 002 Exiting.....
@@ -33,6 +34,7 @@ curl --request GET "http://localhost:7050/chain/blocks/5"
 **## SaveStateChaincode.go**
 
 peer chaincode deploy -u jim -l golang -c '{"Args": ["init"]}' -p github.com/hyperledger/fabric/examples/chaincode/go/hello/SaveStateChaincode
+
 06:57:44.612 [chaincodeCmd] getChaincodeSpecification -> INFO 001 Local user 'jim' is already logged in. Retrieving login token.
 06:57:46.843 [chaincodeCmd] chaincodeDeploy -> INFO 002 Deploy result: type:GOLANG chaincodeID:<path:"github.com/hyperledger/fabric/examples/chaincode/go/hello/SaveStateChaincode" name:"79fe601fafc651c73740f3d5eac3f3fae032addb68e98811ba995af3d1220fa78b06dd48b06a7f25d450a14339e5927fbe2e283c2e2ce4ca7e5e5caf1e530d46" > ctorMsg:<args:"init" > 
 Deploy chaincode: 79fe601fafc651c73740f3d5eac3f3fae032addb68e98811ba995af3d1220fa78b06dd48b06a7f25d450a14339e5927fbe2e283c2e2ce4ca7e5e5caf1e530d46
