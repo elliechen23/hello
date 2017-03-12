@@ -46,6 +46,12 @@ peer chaincode invoke  -u jim -n $ccid -c '{"Function":"invoke", "Args":["testKe
 
 peer chaincode query  -u jim -n $ccid -c '{"Function":"query", "Args":["testKey"]}'
 Query Result: State for testKey = testValue
+#
+Init called with function init!
+
+Invoke called with function invoke!
+
+Query called with function query!
 
 #
 
@@ -79,14 +85,6 @@ peer chaincode invoke  -u jim -n $ccid2 -c '{"Function":"delete", "Args":["testD
 
 peer chaincode query  -u jim -n $ccid2 -c '{"Function":"query", "Args":["testDate"]}'
 Query Result: 
-
-#
-
-Init called with function init!
-
-Invoke called with function invoke!
-
-Query called with function query!
 
 #
 StorageChaincode Invoke
