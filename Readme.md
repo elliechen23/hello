@@ -46,7 +46,7 @@ peer chaincode deploy -u jim -l golang -c '{"Args": ["init"]}' -p github.com/hyp
 06:18:11.349 [chaincodeCmd] chaincodeDeploy -> INFO 002 Deploy result: type:GOLANG chaincodeID:<path:"github.com/hyperledger/fabric/examples/chaincode/go/hello/ChaincodeStorage" name:"71f6291a2b98c0a42ed0b5e7c2f1402704dc1c8c07890778b9364bd840113200e26ddc36bf6631c60f9ed7ff1f7ac1b62392b0e1717f2a217d37afe7321deed1" > ctorMsg:<args:"init" > 
 Deploy chaincode: 71f6291a2b98c0a42ed0b5e7c2f1402704dc1c8c07890778b9364bd840113200e26ddc36bf6631c60f9ed7ff1f7ac1b62392b0e1717f2a217d37afe7321deed1
 06:18:11.350 [main] main -> INFO 003 Exiting.....
-# 
+
 export ccid2=71f6291a2b98c0a42ed0b5e7c2f1402704dc1c8c07890778b9364bd840113200e26ddc36bf6631c60f9ed7ff1f7ac1b62392b0e1717f2a217d37afe7321deed1
 
 peer chaincode invoke  -u jim -n $ccid2 -c '{"Function":"put", "Args":["testDate","2017-03-12"]}'
@@ -57,61 +57,10 @@ peer chaincode invoke  -u jim -n $ccid2 -c '{"Function":"delete", "Args":["testD
 
 peer chaincode query  -u jim -n $ccid2 -c '{"Function":"query", "Args":["testDate"]}'
 
-
-StorageChaincode Invoke
-StorageChaincode put
-06:29:45.314 [shim] DEBU : [6a0f9742]Received message TRANSACTION from shim
-06:29:45.314 [shim] DEBU : [6a0f9742]Handling ChaincodeMessage of type: TRANSACTION(state:ready)
-06:29:45.314 [shim] DEBU : [6a0f9742]Received TRANSACTION, invoking transaction on chaincode(Src:ready, Dst:transaction)
-06:29:45.314 [shim] DEBU : [6a0f9742]Inside putstate, isTransaction = true
-06:29:45.314 [shim] DEBU : [6a0f9742]Sending PUT_STATE
-06:29:45.316 [shim] DEBU : [6a0f9742]Received message RESPONSE from shim
-06:29:45.316 [shim] DEBU : [6a0f9742]Handling ChaincodeMessage of type: RESPONSE(state:transaction)
-06:29:45.316 [shim] DEBU : [6a0f9742]before send
-06:29:45.316 [shim] DEBU : [6a0f9742]after send
-06:29:45.316 [shim] DEBU : [6a0f9742]Received RESPONSE, communicated (state:transaction)
-06:29:45.316 [shim] DEBU : [6a0f9742]Received RESPONSE. Successfully updated state
-06:29:45.316 [shim] DEBU : [6a0f9742]Transaction completed. Sending COMPLETED
-06:29:45.316 [shim] DEBU : [6a0f9742]Move state message COMPLETED
-06:29:45.316 [shim] DEBU : [6a0f9742]Handling ChaincodeMessage of type: COMPLETED(state:transaction)
-06:29:45.316 [shim] DEBU : [6a0f9742]send state message COMPLETED
-StorageChaincode query
-06:30:02.794 [shim] DEBU : [8ab4c64b]Received message QUERY from shim
-06:30:02.794 [shim] DEBU : [8ab4c64b]Handling ChaincodeMessage of type: QUERY(state:ready)
-06:30:02.794 [shim] DEBU : [8ab4c64b]Sending GET_STATE
-06:30:02.796 [shim] DEBU : [8ab4c64b]Received message RESPONSE from shim
-06:30:02.796 [shim] DEBU : [8ab4c64b]Handling ChaincodeMessage of type: RESPONSE(state:ready)
-06:30:02.796 [shim] DEBU : [8ab4c64b]before send
-06:30:02.796 [shim] DEBU : [8ab4c64b]after send
-06:30:02.796 [shim] DEBU : [8ab4c64b]Received RESPONSE, communicated (state:ready)
-06:30:02.796 [shim] DEBU : [8ab4c64b]GetState received payload RESPONSE
-06:30:02.796 [shim] DEBU : [8ab4c64b]Query completed. Sending QUERY_COMPLETED
+#
 Query Response:{"Key":"testDate","Value":"2017-03-12"}
 StorageChaincode Invoke
 StorageChaincode delete
-06:30:28.795 [shim] DEBU : [56d2b2d8]Received message TRANSACTION from shim
-06:30:28.795 [shim] DEBU : [56d2b2d8]Handling ChaincodeMessage of type: TRANSACTION(state:ready)
-06:30:28.795 [shim] DEBU : [56d2b2d8]Received TRANSACTION, invoking transaction on chaincode(Src:ready, Dst:transaction)
-06:30:28.795 [shim] DEBU : [56d2b2d8]Sending DEL_STATE
-06:30:28.796 [shim] DEBU : [56d2b2d8]Received message RESPONSE from shim
-06:30:28.796 [shim] DEBU : [56d2b2d8]Handling ChaincodeMessage of type: RESPONSE(state:transaction)
-06:30:28.796 [shim] DEBU : [56d2b2d8]before send
-06:30:28.796 [shim] DEBU : [56d2b2d8]after send
-06:30:28.796 [shim] DEBU : [56d2b2d8]Received RESPONSE, communicated (state:transaction)
-06:30:28.796 [shim] DEBU : [56d2b2d8-abdd-40a6-bbe6-951341ea8b53]Received RESPONSE. Successfully deleted state
-06:30:28.796 [shim] DEBU : [56d2b2d8]Transaction completed. Sending COMPLETED
-06:30:28.796 [shim] DEBU : [56d2b2d8]Move state message COMPLETED
-06:30:28.796 [shim] DEBU : [56d2b2d8]Handling ChaincodeMessage of type: COMPLETED(state:transaction)
-06:30:28.796 [shim] DEBU : [56d2b2d8]send state message COMPLETED
+Successfully deleted state
 StorageChaincode query
 Query Response:{"Key":"testDate","Value":""}
-06:30:47.167 [shim] DEBU : [0def10d4]Received message QUERY from shim
-06:30:47.168 [shim] DEBU : [0def10d4]Handling ChaincodeMessage of type: QUERY(state:ready)
-06:30:47.168 [shim] DEBU : [0def10d4]Sending GET_STATE
-06:30:47.168 [shim] DEBU : [0def10d4]Received message RESPONSE from shim
-06:30:47.168 [shim] DEBU : [0def10d4]Handling ChaincodeMessage of type: RESPONSE(state:ready)
-06:30:47.168 [shim] DEBU : [0def10d4]before send
-06:30:47.168 [shim] DEBU : [0def10d4]after send
-06:30:47.168 [shim] DEBU : [0def10d4]Received RESPONSE, communicated (state:ready)
-06:30:47.168 [shim] DEBU : [0def10d4]GetState received payload RESPONSE
-06:30:47.168 [shim] DEBU : [0def10d4]Query completed. Sending QUERY_COMPLETED
