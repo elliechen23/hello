@@ -52,12 +52,11 @@ export ccid2=71f6291a2b98c0a42ed0b5e7c2f1402704dc1c8c07890778b9364bd840113200e26
 peer chaincode invoke  -u jim -n $ccid2 -c '{"Function":"put", "Args":["testDate","2017-03-12"]}'
 
 peer chaincode query  -u jim -n $ccid2 -c '{"Function":"query", "Args":["testDate"]}'
-Query Response:{"Key":"testDate","Value":"2017-03-12"}
 
 peer chaincode invoke  -u jim -n $ccid2 -c '{"Function":"delete", "Args":["testDate"]}'
 
 peer chaincode query  -u jim -n $ccid2 -c '{"Function":"query", "Args":["testDate"]}'
-Query Response:{"Key":"testDate","Value":""}
+
 
 StorageChaincode Invoke
 StorageChaincode put
