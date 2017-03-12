@@ -45,6 +45,7 @@ export ccid=79fe601fafc651c73740f3d5eac3f3fae032addb68e98811ba995af3d1220fa78b06
 peer chaincode invoke  -u jim -n $ccid -c '{"Function":"invoke", "Args":["testKey","testValue"]}'
 
 peer chaincode query  -u jim -n $ccid -c '{"Function":"query", "Args":["testKey"]}'
+
 Query Result: State for testKey = testValue
 #
 Init called with function init!
@@ -79,11 +80,13 @@ export ccid2=71f6291a2b98c0a42ed0b5e7c2f1402704dc1c8c07890778b9364bd840113200e26
 peer chaincode invoke  -u jim -n $ccid2 -c '{"Function":"put", "Args":["testDate","2017-03-12"]}'
 
 peer chaincode query  -u jim -n $ccid2 -c '{"Function":"query", "Args":["testDate"]}'
+
 Query Result: 2017-03-12
 
 peer chaincode invoke  -u jim -n $ccid2 -c '{"Function":"delete", "Args":["testDate"]}'
 
 peer chaincode query  -u jim -n $ccid2 -c '{"Function":"query", "Args":["testDate"]}'
+
 Query Result: 
 
 #
