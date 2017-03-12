@@ -63,6 +63,7 @@ peer chaincode query  -u jim -n $ccid2 -c '{"Function":"query", "Args":["testDat
 StorageChaincode Invoke
 StorageChaincode put
 Successfully updated state
+StorageChaincode query
 Query Response:{"Key":"testDate","Value":"2017-03-12"}
 StorageChaincode Invoke
 StorageChaincode delete
